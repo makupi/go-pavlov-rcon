@@ -1,4 +1,4 @@
-package go_rcon
+package rcon
 
 import (
 	"testing"
