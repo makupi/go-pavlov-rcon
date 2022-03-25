@@ -5,7 +5,6 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"net"
 	"strings"
@@ -96,7 +95,7 @@ func (c *Client) Write(command string) (response CommandResponse, err error) {
 	if err != nil {
 		return
 	}
-	fmt.Println(r)
+
 	err = json.Unmarshal([]byte(r), &response)
 	if err != nil {
 		return
