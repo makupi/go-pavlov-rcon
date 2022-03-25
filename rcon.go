@@ -38,6 +38,7 @@ type CommandResponse struct {
 	Data       map[string]interface{} `json:"-"`
 }
 
+// Open a new pavlov rcon connection
 func Open(address, password string, autoReconnect bool) (*Client, error) {
 	client := Client{
 		address:       address,
@@ -53,6 +54,7 @@ func Open(address, password string, autoReconnect bool) (*Client, error) {
 	return &client, nil
 }
 
+// Connect to the pavlov rcon server, automatically called on Open
 func (c *Client) Connect() error {
 	conn, err := net.DialTimeout("tcp", c.address, DefaultTimeout)
 	if err != nil {
@@ -75,6 +77,7 @@ func (c *Client) Connect() error {
 	return nil
 }
 
+// Write a command to the pavlov rcon server, will automatically read the response
 func (c *Client) Write(command string) (response CommandResponse, err error) {
 	if !c.isConnected() {
 		if !c.AutoReconnect {
